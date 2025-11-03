@@ -14,7 +14,7 @@ function ThankYouPage() {
       <img
         src={coupleLogo}
         alt="couple logo"
-        style={{ width: "180px", marginTop: "40px" }}
+        style={{ width: "180px", marginTop: "10px" }}
       />
       
       <h1 style={{ fontSize: "2.5rem", color: "#c2185b" }}>
