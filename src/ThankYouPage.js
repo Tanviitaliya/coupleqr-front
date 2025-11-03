@@ -1,4 +1,5 @@
 import React from "react";
+import coupleLogo from "./couplelogo.png"; // ✅ Import your image
 
 function ThankYouPage() {
   return (
@@ -17,9 +18,10 @@ function ThankYouPage() {
         We’re so happy to have your presence in our special moments! 💐
       </p>
 
+      {/* ✅ Updated Image */}
       <img
-        src="https://cdn-icons-png.flaticon.com/512/3159/3159310.png"
-        alt="thank you"
+        src={coupleLogo}
+        alt="couple logo"
         style={{ width: "180px", marginTop: "40px" }}
       />
     </div>
