@@ -10,6 +10,13 @@ function ThankYouPage() {
         fontFamily: "'Poppins', sans-serif",
       }}
     >
+        {/* ✅ Updated Image */}
+      <img
+        src={coupleLogo}
+        alt="couple logo"
+        style={{ width: "180px", marginTop: "40px" }}
+      />
+      
       <h1 style={{ fontSize: "2.5rem", color: "#c2185b" }}>
         🎉 Thank You for Sharing Your Photo! 💕
       </h1>
@@ -18,12 +25,7 @@ function ThankYouPage() {
         We’re so happy to have your presence in our special moments! 💐
       </p>
 
-      {/* ✅ Updated Image */}
-      <img
-        src={coupleLogo}
-        alt="couple logo"
-        style={{ width: "180px", marginTop: "40px" }}
-      />
+    
     </div>
   );
 }
