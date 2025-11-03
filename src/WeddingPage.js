@@ -28,10 +28,13 @@ function WeddingPage() {
 
     setIsUploading(true);
     try {
-      const res = await fetch("http://192.168.31.155:5000/api/images/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "https://coupleqr-back.onrender.com/api/images/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await res.json();
       alert(data.message || "Upload successful!");
@@ -157,4 +160,3 @@ function WeddingPage() {
 }
 
 export default WeddingPage;
-    

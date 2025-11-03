@@ -7,7 +7,7 @@ import ThankYouPage from "./ThankYouPage";
 function App() {
   // 👉 Replace localhost with your computer’s local IP (so your phone can access it)
   // Example: "http://192.168.31.155:3000/wedding"
-  const qrValue = "http://192.168.31.155:3000/wedding";
+ const qrValue = "https://coupleqr-frontend.vercel.app/wedding";
 
   return (
     <Router>
