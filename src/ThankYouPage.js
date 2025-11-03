@@ -6,7 +6,7 @@ function ThankYouPage() {
     <div
       style={{
         textAlign: "center",
-        marginTop: "150px",
+        marginTop: "80px",
         fontFamily: "'Poppins', sans-serif",
       }}
     >
