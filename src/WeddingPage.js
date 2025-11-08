@@ -171,7 +171,6 @@
 //   );
 // }
 
-// export default WeddingPage;
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import wespyLogo from "./wespy.png";
@@ -181,7 +180,7 @@ function WeddingPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [showUpload, setShowUpload] = useState(false); // 👈 For showing upload section
+  const [showUpload, setShowUpload] = useState(false); // 👈 toggles upload section
 
   const navigate = useNavigate();
 
@@ -244,53 +243,52 @@ function WeddingPage() {
         fontFamily: "'Poppins', sans-serif",
       }}
     >
-      {/* 🩷 Title */}
-      <h1 style={{ fontSize: "1.5rem", color: "#c2185b" }}>
-        💖 Welcome to Parth & Anushka's Grand Wedding! 💖
-      </h1>
-
-      {/* 🖼 Wespy Logo */}
-      <img
-        src={wespyLogo}
-        alt="Wespy Logo"
-        style={{
-          width: "200px",
-          marginTop: "5px",
-          display: "block",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      />
-
-      {/* 💬 Description */}
-      <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "10px" }}>
-        Use your Camera 📸 and Look around, Hunt for those Moments that can be
-        Found — Find Moments We May Have Missed! 💕
-      </p>
-
-      {/* 🌸 Click Me Button */}
+      {/* 👰 Welcome Section - hidden after button click */}
       {!showUpload && (
-        <button
-          onClick={() => setShowUpload(true)}
-          style={{
-            backgroundColor: "#c2185b",
-            color: "#fff",
-            border: "none",
-            padding: "12px 24px",
-            borderRadius: "8px",
-            fontSize: "16px",
-            cursor: "pointer",
-            marginTop: "20px",
-            boxShadow: "0 3px 8px rgba(0,0,0,0.2)",
-          }}
-        >
-          Click Me 💌
-        </button>
+        <>
+          <h1 style={{ fontSize: "1.5rem", color: "#c2185b" }}>
+            💖 Welcome to Parth & Anushka's Grand Wedding! 💖
+          </h1>
+
+          <button
+            onClick={() => setShowUpload(true)}
+            style={{
+              backgroundColor: "#c2185b",
+              color: "#fff",
+              border: "none",
+              padding: "12px 24px",
+              borderRadius: "8px",
+              fontSize: "16px",
+              cursor: "pointer",
+              marginTop: "20px",
+              boxShadow: "0 3px 8px rgba(0,0,0,0.2)",
+            }}
+          >
+            Click Me 💌
+          </button>
+        </>
       )}
 
-      {/* 📸 Upload Section (shown after click) */}
+      {/* 📸 Upload Section - shown after click */}
       {showUpload && (
         <div style={{ marginTop: "30px" }}>
+          <img
+            src={wespyLogo}
+            alt="Wespy Logo"
+            style={{
+              width: "200px",
+              marginTop: "5px",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          />
+
+          <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "10px" }}>
+            Use your Camera 📸 and Look around, Hunt for those Moments that can be
+            Found — Find Moments We May Have Missed! 💕
+          </p>
+
           <div style={{ marginTop: "20px" }}>
             <input
               type="file"
@@ -376,4 +374,5 @@ function WeddingPage() {
 }
 
 export default WeddingPage;
+
 
