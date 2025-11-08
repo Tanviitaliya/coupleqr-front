@@ -105,7 +105,7 @@ function WeddingPage() {
             alignItems: "center",
           }}
         >
-          <h1 style={{ fontSize: "2.5rem", color: "#c2185b", marginBottom: "20px" }}>
+          <h1 style={{ fontSize: "1.5rem", color: "#c2185b", marginBottom: "40px" }}>
             💖 Welcome to Parth & Anushka's Grand Wedding! 💖
           </h1>
 
