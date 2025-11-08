@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import wespyLogo from "./wespy.png";
 
 function WeddingPage() {
   const [file, setFile] = useState(null);
@@ -29,7 +30,8 @@ function WeddingPage() {
     setIsUploading(true);
     try {
       const res = await fetch(
-        "https://coupleqr-back.onrender.com/api/images/upload",
+        // "https://coupleqr-back.onrender.com/api/images/upload",
+        "http://192.168.31.155:5000/api/images/upload",
         {
           method: "POST",
           body: formData,
@@ -58,6 +60,7 @@ function WeddingPage() {
     return (
       <div style={{ textAlign: "center", marginTop: "100px" }}>
         <h2>⚠️ Please scan the QR code on your phone to access this page.</h2>
+      
       </div>
     );
   }
@@ -71,10 +74,19 @@ function WeddingPage() {
       }}
     >
       <h1 style={{ fontSize: "2.5rem", color: "#c2185b" }}>
-        💖 Welcome to our Grand Wedding! 💖
+        💖 Welcome to Parth & Anushka's Grand Wedding! 💖
       </h1>
+      <img
+        src={wespyLogo}
+        alt="Wespy Logo"
+        style={{
+          width: "200px",
+          marginTop: "5px",
+          float: "center", // 👈 this aligns it to the left side
+        }}
+      />
       <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "10px" }}>
-        Please upload your picture below 📸
+        Use your Camera 📸 and Look around, Hunt for there Moments that can be Found, Find Moments We May have Missed!💖
       </p>
 
       <div style={{ marginTop: "40px" }}>
