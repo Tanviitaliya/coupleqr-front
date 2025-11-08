@@ -245,28 +245,43 @@ function WeddingPage() {
     >
       {/* 👰 Welcome Section - hidden after button click */}
       {!showUpload && (
-        <>
-          <h1 style={{ fontSize: "1.5rem", color: "#c2185b" }}>
-            💖 Welcome to Parth & Anushka's Grand Wedding! 💖
-          </h1>
+       <div
+  style={{
+    height: "100vh", // full screen height
+    display: "flex",
+    flexDirection: "column", // stack heading and button vertically
+    justifyContent: "center", // center vertically
+    alignItems: "center", // center horizontally
+    textAlign: "center",
+  }}
+>
+  <h1
+    style={{
+      fontSize: "2.5rem",
+      color: "#c2185b",
+      marginBottom: "20px",
+    }}
+  >
+    💖 Welcome to Parth & Anushka's Grand Wedding! 💖
+  </h1>
 
-          <button
-            onClick={() => setShowUpload(true)}
-            style={{
-              backgroundColor: "#c2185b",
-              color: "#fff",
-              border: "none",
-              padding: "12px 24px",
-              borderRadius: "8px",
-              fontSize: "16px",
-              cursor: "pointer",
-              marginTop: "20px",
-              boxShadow: "0 3px 8px rgba(0,0,0,0.2)",
-            }}
-          >
-            Click Me 💌
-          </button>
-        </>
+  <button
+    onClick={() => setShowUpload(true)}
+    style={{
+      backgroundColor: "#c2185b",
+      color: "#fff",
+      border: "none",
+      padding: "12px 24px",
+      borderRadius: "8px",
+      fontSize: "16px",
+      cursor: "pointer",
+      boxShadow: "0 3px 8px rgba(0,0,0,0.2)",
+    }}
+  >
+    Click Me 💌
+  </button>
+</div>
+
       )}
 
       {/* 📸 Upload Section - shown after click */}
