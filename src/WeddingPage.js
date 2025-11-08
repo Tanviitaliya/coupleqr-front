@@ -8,15 +8,17 @@ function WeddingPage() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
-
   const navigate = useNavigate();
+
+  const CLOUD_NAME = "duxc1y62i"; // ⚙️ Your Cloudinary cloud name
+  const UPLOAD_PRESET = "wedding_uploads"; // ⚙️ Your unsigned preset name
 
   useEffect(() => {
     const checkMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     setIsMobile(checkMobile);
   }, []);
 
-  // 🧩 Compress image before upload
+  // 🧩 Compress image (80% size, 90% quality)
   const compressImage = (file) => {
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -27,14 +29,14 @@ function WeddingPage() {
         img.onload = () => {
           const canvas = document.createElement("canvas");
           const ctx = canvas.getContext("2d");
-          const scale = 0.8; // reduce to 80% size
+          const scale = 0.8; // 80% resize
           canvas.width = img.width * scale;
           canvas.height = img.height * scale;
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           canvas.toBlob(
             (blob) => resolve(new File([blob], file.name, { type: "image/jpeg" })),
             "image/jpeg",
-            0.95 // 95% quality
+            0.9
           );
         };
       };
@@ -44,7 +46,6 @@ function WeddingPage() {
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
-
     const compressed = await compressImage(selectedFile);
     setFile(compressed);
     setPreviewUrl(URL.createObjectURL(compressed));
@@ -53,18 +54,20 @@ function WeddingPage() {
   const handleUpload = async () => {
     if (!file) return alert("Please select an image first!");
 
+    setIsUploading(true);
+
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("upload_preset", UPLOAD_PRESET);
 
-    setIsUploading(true);
     try {
-      const res = await fetch("https://coupleqr-back.onrender.com/api/images/upload", {
-        method: "POST",
-        body: formData,
-      });
-
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        { method: "POST", body: formData }
+      );
       const data = await res.json();
-      alert(data.message || "Upload successful!");
+      console.log("✅ Uploaded Image URL:", data.secure_url);
+      alert("Upload successful!");
       navigate("/thankyou");
     } catch (err) {
       console.error(err);
@@ -95,7 +98,7 @@ function WeddingPage() {
         fontFamily: "'Poppins', sans-serif",
       }}
     >
-      {!showUpload && (
+      {!showUpload ? (
         <div
           style={{
             height: "100vh",
@@ -108,7 +111,6 @@ function WeddingPage() {
           <h1 style={{ fontSize: "1.5rem", color: "#c2185b", marginBottom: "40px" }}>
             💖 Welcome to Parth & Anushka's Grand Wedding! 💖
           </h1>
-
           <button
             onClick={() => setShowUpload(true)}
             style={{
@@ -125,9 +127,7 @@ function WeddingPage() {
             Click Me 💌
           </button>
         </div>
-      )}
-
-      {showUpload && (
+      ) : (
         <div style={{ marginTop: "30px" }}>
           <img
             src={wespyLogo}
@@ -140,7 +140,6 @@ function WeddingPage() {
               marginRight: "auto",
             }}
           />
-
           <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "10px" }}>
             Use your Camera 📸 and Look around, Hunt for those Moments that can be Found — Find Moments We May Have Missed! 💕
           </p>
@@ -188,7 +187,6 @@ function WeddingPage() {
               >
                 ✖
               </button>
-
               <img
                 src={previewUrl}
                 alt="Preview"
