@@ -18,37 +18,11 @@ function WeddingPage() {
     setIsMobile(checkMobile);
   }, []);
 
-  // 🧩 Compress image (80% size, 90% quality)
-  const compressImage = (file) => {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (event) => {
-        const img = new Image();
-        img.src = event.target.result;
-        img.onload = () => {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-          const scale = 0.8; // 80% resize
-          canvas.width = img.width * scale;
-          canvas.height = img.height * scale;
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob(
-            (blob) => resolve(new File([blob], file.name, { type: "image/jpeg" })),
-            "image/jpeg",
-            0.9
-          );
-        };
-      };
-    });
-  };
-
-  const handleFileChange = async (e) => {
+const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
-    const compressed = await compressImage(selectedFile);
-    setFile(compressed);
-    setPreviewUrl(URL.createObjectURL(compressed));
+    setFile(selectedFile);
+    setPreviewUrl(URL.createObjectURL(selectedFile));
   };
 
   const handleUpload = async () => {
@@ -67,7 +41,7 @@ function WeddingPage() {
       );
       const data = await res.json();
       console.log("✅ Uploaded Image URL:", data.secure_url);
-      alert("Upload successful!");
+      alert("Upload successful!✅");
       navigate("/thankyou");
     } catch (err) {
       console.error(err);
