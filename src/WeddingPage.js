@@ -30,8 +30,8 @@ function WeddingPage() {
     setIsUploading(true);
     try {
       const res = await fetch(
-        // "https://coupleqr-back.onrender.com/api/images/upload",
-        "http://192.168.31.155:5000/api/images/upload",
+        "https://coupleqr-back.onrender.com/api/images/upload",
+        // "http://192.168.31.155:5000/api/images/upload",
         {
           method: "POST",
           body: formData,
@@ -73,7 +73,7 @@ function WeddingPage() {
         fontFamily: "'Poppins', sans-serif",
       }}
     >
-      <h1 style={{ fontSize: "2.5rem", color: "#c2185b" }}>
+      <h1 style={{ fontSize: "1.5rem", color: "#c2185b" }}>
         💖 Welcome to Parth & Anushka's Grand Wedding! 💖
       </h1>
       <img
